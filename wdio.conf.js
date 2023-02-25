@@ -23,7 +23,7 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        'test/specs/clean_page.js'
+        'test/specs/**.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -99,7 +99,7 @@ exports.config = {
     baseUrl: 'https://belchip.by',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 100000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response

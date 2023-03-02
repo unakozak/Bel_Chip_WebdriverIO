@@ -1,24 +1,19 @@
-const LoginPage = require('../pageobjects/LoginPage');
 const CatalogPage = require('../pageobjects/CatalogPage');
 const ShopPage = require('../pageobjects/ShopPage');
-const fs = require('fs');
-
-
-
-
-let validCredentials = JSON.parse(fs.readFileSync("test/testdata/validCred.json"));
 
     describe('BelChip web application CATALOG_PAGE', async () => {
     
-        validCredentials.forEach( ({email, password}) => {
             it('should add products to cart using "Каталог"', async () => {
-                await browser.url('/');
-                await LoginPage.login(email, password);
-                await browser.pause(1000);
-                await CatalogPage.addToCart();
+                await browser.url("/");
+                await CatalogPage.addToCartFromCatalog();
+                const checkFilterActive = await CatalogPage.filteritenmActive.getCSSProperty('background-color');
+                expect(await checkFilterActive).toHaveTextContaining(greenColor);
+                await ShopPage.btnSubmit.click(); 
+                browser.pause(5000);
                 await ShopPage.checkCart();
+                expect(browser.getTitle()).toHaveTextContaining('cart');
+                expect(await ShopPage.hrefinCart.getAttribute("href")).toHaveTextContaining("product");
             });
-        });
-
+            
     });
     

@@ -23,7 +23,7 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        'test/specs/**.js'
+        'test/specs/**_page.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -197,8 +197,17 @@ exports.config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {Object}         browser      instance of created browser/device session
      */
-    // before: function (capabilities, specs) {
-    // },
+    before: function (capabilities, specs) {
+        // global.email = JSON.parse(fs.readFileSync("test/testdata/validCred.json"))
+        // global.password = JSON.parse(fs.readFileSync("test/testdata/validCred.json"))
+        global.validPassword = "1234567890koz";
+        global.validEmail = "una.kozak@mail.ru";
+        global.invalidEmail = "$$rerror@mail.com";
+        global.invalidPassword = "$%Error";
+        global.input = "диод";
+        global.currency = "рос.руб";
+        global.greenColor = "#ACD7A5";
+    },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name

@@ -1,26 +1,23 @@
 const ShopPage = require('../pageobjects/ShopPage');
 const LoginPage = require('../pageobjects/LoginPage');
-const fs = require('fs');
 
-
-let validCredentials = JSON.parse(fs.readFileSync("test/testdata/validCred.json"));
-    
 describe('BelChip web application SHOP_PAGE', async () => {
     
         it('should add the product into the cart from "Home" page', async () => {
-            await browser.url('/');
+            await LoginPage.login(validEmail, validPassword);
             await ShopPage.addToCart();
-            await expect(await ShopPage.counter).toBeDisplayed();
+            expect(await ShopPage.counter).toBeDisplayed();
+            await browser.reloadSession();
         });
 
-    validCredentials.forEach( ({email, password}) => {
+
         it('added products is displayed in the cart', async () => {
-            await browser.url('/');
-            await LoginPage.login(email, password);
+            await LoginPage.login(validEmail, validPassword);
             await ShopPage.addToCart();
             await ShopPage.checkCart();  
-        
+            expect(await browser.getTitle()).toHaveTextContaining("cart");
+            expect(await ShopPage.hrefinCart.getAttribute("href")).toHaveTextContaining("product");
         });
-    }); 
+
 });
     

@@ -71,4 +71,5 @@ The tests in this project use [Microsoft Edge](https://www.microsoft.com/en-us/e
 ## Reporters
 This projects uses both the spec-reporter and allure-reporter. The spec reporter offers great feedback when running from terminal and the allure reporter provides you with a nice report and screenshots that are automatically attached to failed tests. After running your the tests, run npm run report to generate the allure report. It's nifty.
 
-Allure Overview: allure
+Allure Overview: 
+![](./assets/allure_100.png)

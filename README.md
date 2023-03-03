@@ -8,7 +8,7 @@ This is a testing project that uses WebdriverIO  and JavaScript. This project is
 git clone "https://github.com/unakozak/bel_chip_framework.git"
 cd "bel_chip_framework"
 npm install
-npx wdio run .\wdio.conf.js
+npx wdio run ./wdio.conf.js
 ```
 
 ## Why I choose JavaScript
@@ -20,7 +20,8 @@ Page Objects are a really nifty abstraction for the UI elements that you interac
 
 
 ```js
-test/pageobjects/LoginPage.js
+"test/pageobjects/LoginPage.js"
+
 class LoginPage {
     
     get hoverBtnSubmit () { return $('div.header__column.header__column_links.header-icons div:nth-child(5)')}
@@ -51,6 +52,9 @@ class LoginPage {
 }
 module.exports = new LoginPage();
 ```
+
+## Global Constants 
+The config file has a block of global const, such as: email, password, etc., which are used to organize all the necessary string information in one place and then use it in PageObjects.
 
 ## Test examples
 The tests in this project use https://www.microsoft.com/en-us/edge to demonstrate how to interact with some of the most common UI elements you will encounter. Including: dropdowns, basic auth, dynamic loading (waitUntil) and javascript alerts. 

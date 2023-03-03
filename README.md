@@ -55,7 +55,14 @@ module.exports = new LoginPage();
 
 ## Global Constants 
 The config file has a block of global const, such as: email, password, etc., which are used to organize all the necessary string information in one place and then use it in PageObjects.
-
+```json
+before: function (capabilities, specs) {
+        global.validPassword = "1234567890koz";
+        global.validEmail = "una.kozak@mail.ru";
+        global.invalidEmail = "$$rerror@mail.com";
+        global.invalidPassword = "$%Error";
+    },
+```
 ## Test examples
 The tests in this project use https://www.microsoft.com/en-us/edge to demonstrate how to interact with some of the most common UI elements you will encounter. Including: dropdowns, basic auth, dynamic loading (waitUntil) and javascript alerts. 
 

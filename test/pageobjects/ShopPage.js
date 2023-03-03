@@ -30,7 +30,6 @@ class ShopPage {
         await this.counter.waitForDisplayed();
     }
     
-    
 }
 
 module.exports = new ShopPage();

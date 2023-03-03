@@ -11,7 +11,6 @@ class HomePage {
     btnNonActive(currencyValue) { 
         return $(`//a[@class="dropdown__item"][normalize-space()="${currencyValue}"]`); 
     }
-    
     async changeCurrency (currencyValue) {
         await this.header.waitForExist();
         await this.btnHoverCurrancy.waitForDisplayed();
@@ -19,7 +18,6 @@ class HomePage {
         await this.btnNonActive(currencyValue).waitForDisplayed();
         await this.btnNonActive(currencyValue).click();
     }
-
     async addToFav () {
         await this.btnAddToFav.click();
         await this.counter.waitForDisplayed();

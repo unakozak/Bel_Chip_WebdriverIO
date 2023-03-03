@@ -11,6 +11,8 @@ class CatalogPage {
     get devicesNamesAfterFilter () {return $$('.device__name div')}
 
     async addToCartFromCatalog (ctgr1, ctgr2, firm) {
+        await browser.reloadSession();
+        await browser.url("/");
         await this.btnCatalog.click();
         await this.categoryMain(ctgr1).waitForDisplayed();
         await this.categoryMain(ctgr1).click();
@@ -20,8 +22,6 @@ class CatalogPage {
         await this.inputCheckBox(firm).click();
         await this.btnApplyFilter.click();
     } 
-
-    
 }
 
 module.exports = new CatalogPage();

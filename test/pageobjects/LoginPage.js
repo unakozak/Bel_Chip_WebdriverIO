@@ -7,9 +7,11 @@ class LoginPage {
     get btnSubmit () { return $('button.button_big[type = "submit"]')}
     get alertDanger() { return $('div.alert.alert-danger')}
     get loginIdentifier() { return $('div.header-icon__info a[href = "personal/"]')}
-    get logoImage() { return $('.logo__image')}
+    get loginModalWindow () { return $("#login_form_popup")}
 
-    async login (email, password) {
+
+    async login (email, password, isSuccess = true) {
+        await browser.reloadSession();
         await browser.url('/');
         await this.hoverBtnSubmit.moveTo();
         await this.dropdownPopupSubmit.waitForDisplayed();
@@ -17,8 +19,11 @@ class LoginPage {
         await this.inptEmail.waitForDisplayed();
         await this.inptEmail.setValue(email);
         await this.inptPassword.setValue(password);
-        await this.btnSubmit.click();
-        await this.logoImage.waitForDisplayed();
+        await this.btnSubmit.click();     
+        if(isSuccess === true){
+            await this.loginIdentifier.waitForDisplayed();
+            await this.loginModalWindow.waitForDisplayed({reverse : true});
+        }
     } 
 }
 

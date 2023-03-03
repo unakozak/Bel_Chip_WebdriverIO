@@ -5,7 +5,7 @@ const LoginPage = require('../pageobjects/LoginPage');
     
         it('should change the display of the cost of goods from BYN to RUR', async () => {
             await LoginPage.login(validEmail, validPassword);
-            await HomePage.changeCurrency();
+            await HomePage.changeCurrency("RUR");
             expect(await HomePage.newPrice.getValue()).toHaveTextContaining(currency);
         });
 

@@ -5,13 +5,10 @@ const ShopPage = require('../pageobjects/ShopPage');
     
             it('should add products to cart using "Каталог"', async () => {
                 await browser.url("/");
-                await CatalogPage.addToCartFromCatalog();
-                const checkFilterActive = await CatalogPage.filteritenmActive.getCSSProperty('background-color');
-                expect(await checkFilterActive).toHaveTextContaining(greenColor);
+                await CatalogPage.addToCartFromCatalog(ctgr1, ctgr2, firm);
+                await CatalogPage.devicesNamesAfterFilter.forEach(el => {expect(el.getText()).toHaveTextContaining(firm)});
                 await ShopPage.btnSubmit.click(); 
-                browser.pause(5000);
                 await ShopPage.checkCart();
-                expect(browser.getTitle()).toHaveTextContaining('cart');
                 expect(await ShopPage.hrefinCart.getAttribute("href")).toHaveTextContaining("product");
             });
             

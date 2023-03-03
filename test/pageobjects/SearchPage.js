@@ -1,13 +1,12 @@
 class SearchPage {
     
-    get serchField () { return $("input#q-ipt")}
+    get searchField () { return $("input#q-ipt")}
     get btnSearch () { return $("button[class='button header-search__button']")}
-    get device () { return $("div.devices__wrap")}
-
-    async search (input) {
-        await this.serchField.setValue(input);
+    get devicesNames () {return $$(".devices .device__name a[href ^='product/?selected_product']")}
+   
+    async search(input) {
+        await this.searchField.setValue(input);
         await this.btnSearch.click();
-        await this.device.waitForExist({ timeout: 1000 });
     } 
 }
 

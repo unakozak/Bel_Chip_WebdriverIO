@@ -6,7 +6,9 @@ const SearchPage = require('../pageobjects/SearchPage');
         it('should search products and appear them on the screen', async () => {
             await LoginPage.login(validEmail, validPassword);
             await SearchPage.search(input);
-            await browser.pause(1000);
+            await SearchPage.devicesNames.forEach((el) => {
+                expect(el.getText()).toHaveTextContaining(input);
+            });
         });
         
     });

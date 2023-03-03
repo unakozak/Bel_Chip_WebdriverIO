@@ -1,23 +1,27 @@
 class CatalogPage {
 
     get btnCatalog () { return $('div.main-menu__item a[href="catalog/"]')}
-    get category () { return $("//div[@class='sections']//div[4]")}
+    categoryMain(ctgr1) { return $(`img[alt="${ctgr1}"]`)}
+    categorySecond(ctgr2) { return $(`img[alt="${ctgr2}"]`)}
     get filter () { return $("div.filter__item")}
-    get inputCheckBox () { return $$("div.filter__values .filter__value input")[18];}
+    inputCheckBox(firm) { return $(`input[value="${firm}"]`)}
     get btnApplyFilter () { return $(".button.apply_filter")}
     get filteritenmActive () {return $(".filter__item.active")}
     get btnSubmit () { return $$("//button[contains(text(),'Купить')]")[1]}
+    get devicesNamesAfterFilter () {return $$('.device__name div')}
 
-    async addToCartFromCatalog () {
+    async addToCartFromCatalog (ctgr1, ctgr2, firm) {
         await this.btnCatalog.click();
-        await this.category.waitForDisplayed();
-        await this.category.click();
-        await this.category.waitForDisplayed();
-        await this.category.click();
+        await this.categoryMain(ctgr1).waitForDisplayed();
+        await this.categoryMain(ctgr1).click();
+        await this.categorySecond(ctgr2).waitForDisplayed();
+        await this.categorySecond(ctgr2).click();
         await this.filter.waitForDisplayed();
-        await this.inputCheckBox.click();
+        await this.inputCheckBox(firm).click();
         await this.btnApplyFilter.click();
     } 
+
+    
 }
 
 module.exports = new CatalogPage();

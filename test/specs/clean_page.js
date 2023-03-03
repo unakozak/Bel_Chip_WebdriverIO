@@ -7,7 +7,8 @@ describe('BelChip web application CLEAN_PAGE', async () => {
             await LoginPage.login(validEmail, validPassword);
             await ShopPage.addToCart();
             await ShopPage.checkCart(); 
-            await ShopPage.cleanCart();           
+            await ShopPage.cleanCart();    
+            await expect(await this.hrefinCart).not.toExist();       
         });
 
 });

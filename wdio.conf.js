@@ -204,9 +204,12 @@ exports.config = {
         global.validEmail = "una.kozak@mail.ru";
         global.invalidEmail = "$$rerror@mail.com";
         global.invalidPassword = "$%Error";
-        global.input = "диод";
         global.currency = "рос.руб";
         global.greenColor = "#ACD7A5";
+        global.input = "Диод";
+        global.ctgr1 = "Датчики";
+        global.ctgr2 = "Датчики оптические";
+        global.firm = "Vishay";
     },
     /**
      * Runs before a WebdriverIO command gets executed.

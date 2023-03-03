@@ -1,16 +1,16 @@
-# Bel_Chip_WEbdriverIO
+# Bel_Chip_WebdriverIO
 
 This is a testing project that uses WebdriverIO  and JavaScript. This project is useful not only as an example of WebdriverIO and JavaScript playing nicely together, but it includes examples of the PageObject pattern and some practical examples for using WebdriverIO to build an automated test suite with Mocha & Chai.
 
 ## Getting Started
-````md
+
 ```js
 git clone "https://github.com/unakozak/bel_chip_framework.git"
 cd "bel_chip_framework"
 npm install
 npx wdio run .\wdio.conf.js
 ```
-````
+
 ## Why I choose JavaScript
 JavaScript offers the benefit of functions, OOP paradigm and etc, but you won't find them in this project. I have found JavaScript to be great because of the IDE and support for the latest JavaScript features:
 
@@ -18,33 +18,40 @@ JavaScript offers the benefit of functions, OOP paradigm and etc, but you won't 
 ## Page Objects
 Page Objects are a really nifty abstraction for the UI elements that you interact with in your tests. You can create simple getter functions for each element that you need to access. And optionally you can create convenience methods like loginWithCredentials() that allow you to write more concise tests.
 
-````md
+
 ```js
-src/pages/LoginPage.ts
-import BasePage from 'src/pages/BasePage';
+test/pageobjects/LoginPage.js
+class LoginPage {
+    
+    get hoverBtnSubmit () { return $('div.header__column.header__column_links.header-icons div:nth-child(5)')}
+    get dropdownPopupSubmit () { return $(".dropdown__item[href='#']")}
+    get inptEmail () { return $('div.form__item input[name = "login"]')}
+    get inptPassword () { return $('div.form__item input[name = "password"]')}
+    get btnSubmit () { return $('button.button_big[type = "submit"]')}
+    get alertDanger() { return $('div.alert.alert-danger')}
+    get loginIdentifier() { return $('div.header-icon__info a[href = "personal/"]')}
+    get loginModalWindow () { return $("#login_form_popup")}
 
-class LoginPage extends BasePage {
 
-    get username() {
-        return $('#username');
-    }
-
-    get password() {
-        return $('#password');
-    }
-
-    get submit() {
-        return $('#login > button');
-    }
-
-    loginWithCredentials(username, password) {
-        this.username.setValue(username);
-        this.password.setValue(password);
-        this.submit.click();
-    }
+    async login (email, password, isSuccess = true) {
+        await browser.reloadSession();
+        await browser.url('/');
+        await this.hoverBtnSubmit.moveTo();
+        await this.dropdownPopupSubmit.waitForDisplayed();
+        await this.dropdownPopupSubmit.click();
+        await this.inptEmail.waitForDisplayed();
+        await this.inptEmail.setValue(email);
+        await this.inptPassword.setValue(password);
+        await this.btnSubmit.click();     
+        if(isSuccess === true){
+            await this.loginIdentifier.waitForDisplayed();
+            await this.loginModalWindow.waitForDisplayed({reverse : true});
+        }
+    } 
 }
+module.exports = new LoginPage();
 ```
-````
+
 ## Test examples
 The tests in this project use https://www.microsoft.com/en-us/edge to demonstrate how to interact with some of the most common UI elements you will encounter. Including: dropdowns, basic auth, dynamic loading (waitUntil) and javascript alerts. 
 

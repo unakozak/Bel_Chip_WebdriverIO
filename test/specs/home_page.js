@@ -1,6 +1,7 @@
 const HomePage = require('../pageobjects/HomePage');
 const LoginPage = require('../pageobjects/LoginPage');
-    
+const expectChai = require('chai').expect;
+
 describe('BelChip web application HOME_PAGE', async () => {
 
     it('should change the display of the cost of goods from BYN to RUR', async () => {
@@ -10,8 +11,10 @@ describe('BelChip web application HOME_PAGE', async () => {
     });
 
     it('should add products to favorites', async () => {
+        await browser.url('/')
         await HomePage.addToFav();
-        expect(HomePage.counter).toExist();
+        browser.pause(4000)
+        expectChai(await HomePage.isCounterDisplayed()).to.equal(true);
     });
 
 });

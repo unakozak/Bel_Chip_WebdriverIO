@@ -1,5 +1,6 @@
 const ShopPage = require('../pageobjects/ShopPage');
 const LoginPage = require('../pageobjects/LoginPage');
+const expectChai = require('chai').expect;
 
 describe('BelChip web application CLEAN_PAGE', async () => {
         
@@ -8,7 +9,7 @@ describe('BelChip web application CLEAN_PAGE', async () => {
         await ShopPage.addToCart();
         await ShopPage.checkCart(); 
         await ShopPage.cleanCart();    
-        await expect(await ShopPage.hrefinCart).not.toExist();       
+        expectChai(await ShopPage.isItemDisplayedInCart()).to.equal(false);
     });
 });
     

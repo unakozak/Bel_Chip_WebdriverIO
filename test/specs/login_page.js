@@ -5,7 +5,7 @@ const LoginPage = require('../pageobjects/LoginPage');
             it('should login with invalid credentials', async () => {
                 await LoginPage.login(invalidEmail, invalidPassword, false);
                 await LoginPage.alertDanger.waitForDisplayed();
-                await expect(await LoginPage.alertDanger).toBeDisplayed();
+                await expect(await LoginPage.alertDanger).toBeDisplayed(); 
             });
 
             it('should login with valid credentials', async () => {

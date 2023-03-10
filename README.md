@@ -65,6 +65,10 @@ exports.config = {
     },
 }
 ```
+
+## Test cases 
+For this project test cases have been developed in order to cover the whole user path on the website including critical paths such as: adding to cart from the homepage, through the catalog, logging in with valid and invalid credentials, clearing the cart, etc. You can find an example of test cases here: [test cases](https://docs.google.com/spreadsheets/d/1yeQlF-kpD-KIJS8qyRWtylTQ3pCfXwyJFsc8mTL6rOE/edit?hl=en&forcehl=1#gid=0);
+
 ## Test examples
 The tests in this project use [Microsoft Edge](https://www.microsoft.com/en-us/edge) to demonstrate how to interact with some of the most common UI elements you will encounter. Including: dropdowns, basic auth, dynamic loading (waitUntil) and javascript alerts. 
 

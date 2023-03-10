@@ -11,9 +11,8 @@ describe('BelChip web application HOME_PAGE', async () => {
     });
 
     it('should add products to favorites', async () => {
-        await browser.url('/')
+        await browser.url('/');
         await HomePage.addToFav();
-        browser.pause(4000)
         expectChai(await HomePage.isCounterDisplayed()).to.equal(true);
     });
 

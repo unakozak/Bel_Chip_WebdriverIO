@@ -8,6 +8,7 @@ describe('BelChip web application SHOP_PAGE', async () => {
     it('should add the product into the cart from "Home" page', async () => {
         await LoginPage.login(validEmail, validPassword);
         await ShopPage.addToCart();
+        await ShopPage.counter.waitForDisplayed();
         expectChai(await ShopPage.isCounterDisplayed()).to.equal(true);
     });
 
@@ -16,6 +17,7 @@ describe('BelChip web application SHOP_PAGE', async () => {
         await ShopPage.addToCart();
         await ShopPage.checkCart();  
         expectChai(await ShopPage.isItemDisplayedInCart()).to.equal(true);
+        
     });
 
 });

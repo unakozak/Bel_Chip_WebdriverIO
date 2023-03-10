@@ -22,13 +22,14 @@ class ShopPage {
         await this.inputField.setValue(1);
         await this.btnBuyDevice.waitForDisplayed();
         await this.btnBuyDevice.click();  
-        await this.counter.waitForDisplayed();
+        await browser.pause(3000);
     } 
     async checkCart () {   
         await this.cartAjax.moveTo();
         await this.btnGoToCart.waitForDisplayed();
         await this.btnGoToCart.click();
-        await this.title.waitForDisplayed();
+        await browser.pause(3000);
+        // await this.title.waitForDisplayed();
     }
     async cleanCart (){
         await browser.pause(1000);

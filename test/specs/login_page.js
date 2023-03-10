@@ -2,7 +2,7 @@ const LoginPage = require('../pageobjects/LoginPage');
 
     describe('BelChip web application LOGIN_PAGE', async () => {
     
-            it('should login with invalid credentials', async () => {
+            it('should not login with invalid credentials', async () => {
                 await LoginPage.login(invalidEmail, invalidPassword, false);
                 await LoginPage.alertDanger.waitForDisplayed();
                 await expect(await LoginPage.alertDanger).toBeDisplayed(); 

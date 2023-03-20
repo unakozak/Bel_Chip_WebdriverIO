@@ -147,6 +147,9 @@ exports.config = {
       "junit",
       {
         outputDir: "./reports",
+        outputFileFormat: function (options) {
+          return `results-${options.cid}.${options.capabilities}.xml`;
+        },
       },
     ],
   ],

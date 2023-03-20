@@ -1,0 +1,11 @@
+services:
+  jenkins:
+    container_name: jenkins-wdio
+    ports:
+      - 8080:8080
+    build: .
+    volumes:
+      - jenkins_home:/var/jenkins_home
+
+volumes:
+  jenkins_home:

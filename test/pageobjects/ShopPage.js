@@ -18,26 +18,27 @@ class ShopPage {
     async addToCart () {
         await this.device.waitForDisplayed();
         await this.device.click();
+        await this.title.waitForDisplayed();
         await this.inputField.waitForDisplayed();
         await this.inputField.setValue(1);
         await this.btnBuyDevice.waitForDisplayed();
-        await this.btnBuyDevice.click();  
-        await browser.pause(3000);
+        await this.btnBuyDevice.click(); 
+        await browser.pause(2000);
     } 
     async checkCart () {   
         await this.cartAjax.moveTo();
         await this.btnGoToCart.waitForDisplayed();
         await this.btnGoToCart.click();
-        await browser.pause(3000);
-        // await this.title.waitForDisplayed();
+        await browser.pause(2000);
     }
     async cleanCart (){
-        await browser.pause(1000);
         await this.btnClean.waitForExist();
         await this.btnClean.click();
+        await browser.pause(2000);
         await browser.acceptAlert();
     }
     async clickBtnSubmit(){
+        await browser.pause(1000);
         await this.btnCatalogSubmit.click(); 
         await this.counter.waitForDisplayed();
     }

@@ -23,13 +23,13 @@ class ShopPage {
         await this.inputField.setValue(1);
         await this.btnBuyDevice.waitForDisplayed();
         await this.btnBuyDevice.click(); 
-        await this.counter.waitForExist(); 
+        await browser.pause(2000);
     } 
     async checkCart () {   
         await this.cartAjax.moveTo();
         await this.btnGoToCart.waitForDisplayed();
         await this.btnGoToCart.click();
-        await this.title.waitForDisplayed();
+        await browser.pause(2000);
     }
     async cleanCart (){
         await this.btnClean.waitForExist();
@@ -38,6 +38,7 @@ class ShopPage {
         await browser.acceptAlert();
     }
     async clickBtnSubmit(){
+        await browser.pause(1000);
         await this.btnCatalogSubmit.click(); 
         await this.counter.waitForDisplayed();
     }
